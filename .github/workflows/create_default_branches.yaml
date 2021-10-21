@@ -1,6 +1,4 @@
-on:
-  create:
-    branches: [main]
+on: push
 jobs:
   create-first-branches:
     runs-on: ubuntu-latest
