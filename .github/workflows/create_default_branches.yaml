@@ -1,0 +1,21 @@
+on:
+  create:
+    branches: [main]
+jobs:
+  create-first-branches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Create staging branch
+        run: |
+          git checkout -b staging && git push origin staging
+        if: git branch | grep staging
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create master branch
+        run: |
+          git checkout -b master && git push origin master
+        if: git branch | grep master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
